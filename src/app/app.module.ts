@@ -8,7 +8,7 @@ import { AppComponent } from './app.component';
 import { AuthorModule } from './author/author.module';
 import { BookModule } from './book/book.module';
 import { EditorialModule } from './editorial/editorial.module';
-import { HttpErrorInterceptor } from './interceptors/http-error-interceptor.service';
+import { HttpErrorInterceptorService } from './interceptors/http-error-interceptor.service';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -34,7 +34,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
   providers: [
     {
       provide: HTTP_INTERCEPTORS,
-      useClass: HttpErrorInterceptor,
+      useClass: HttpErrorInterceptorService,
       multi: true
     }
   ],
