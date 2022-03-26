@@ -1,0 +1,118 @@
+<div class="container mt-4">
+  <h2 class="text-center">Create a new author</h2>
+  <form
+    [formGroup]="authorForm"
+    (ngSubmit)="!authorForm.invalid && createAuthor(authorForm.value)"
+  >
+    <!--Name-->
+    <div class="form-group mx-sm-3 mb-2">
+      <label for="name">Name</label>
+      <input
+        novalidate
+        id="name"
+        class="form-control"
+        formControlName="name"
+        placeholder="Author's name"
+      />
+      <div
+        class="alert alert-danger alert-dismissible fade show"
+        *ngIf="
+          authorForm.get('name')!.hasError('required') &&
+          authorForm.get('name')!.touched
+        "
+      >
+        Name required
+      </div>
+      <div
+        class="alert alert-danger alert-dismissible fade show"
+        *ngIf="authorForm.get('name')!.hasError('minlength')"
+      >
+        Name too short
+      </div>
+    </div>
+
+    <!--Image-->
+    <div class="form-group mx-sm-3 mb-2">
+      <label for="image">Image</label>
+      <input
+        novalidate
+        id="image"
+        class="form-control"
+        formControlName="image"
+        placeholder="URL with Author's image"
+      />
+      <div
+        class="alert alert-danger alert-dismissible fade show"
+        *ngIf="
+          authorForm.get('image')!.hasError('required') &&
+          authorForm.get('image')!.touched
+        "
+      >
+        Image required
+      </div>
+    </div>
+
+    <!--Birth Date-->
+    <div class="form-group mx-sm-3 mb-2">
+      <label for="birthDate">Birth date</label>
+      <input
+        novalidate
+        id="birthDate"
+        class="form-control"
+        formControlName="birthDate"
+        placeholder="Author's birth date"
+      />
+      <div
+        class="alert alert-danger alert-dismissible fade show"
+        *ngIf="
+          authorForm.get('birthDate')!.hasError('required') &&
+          authorForm.get('birthDate')!.touched
+        "
+      >
+        Birth date required
+      </div>
+    </div>
+
+    <!--Description-->
+    <div class="form-group mx-sm-3 mb-2">
+      <label for="description">Description</label>
+      <input
+        novalidate
+        id="description"
+        class="form-control"
+        formControlName="description"
+        placeholder="Author's short description"
+      />
+      <div
+        class="alert alert-danger alert-dismissible fade show"
+        *ngIf="
+          authorForm.get('description')!.hasError('required') &&
+          authorForm.get('description')!.touched
+        "
+      >
+        Description required
+      </div>
+      <div
+        class="alert alert-danger alert-dismissible fade show"
+        *ngIf="authorForm.get('description')!.hasError('maxlength')"
+      >
+        Description too long
+      </div>
+    </div>
+
+    <button
+      type="submit"
+      class="btn btn-primary"
+      [disabled]="!authorForm.valid"
+    >
+      Create
+    </button>
+    <button
+      type="button"
+      class="btn btn-danger ml-3"
+      (click)="cancelCreation()"
+    >
+      Cancel
+    </button>
+  </form>
+</div>
