@@ -34,6 +34,7 @@ export class AuthorCreateComponent implements OnInit {
   }
 
   cancelCreation() {
+    this.toastr.warning("The author wasn't created", 'Author creation');
     this.authorForm.reset();
   }
 
