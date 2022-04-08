@@ -57,7 +57,7 @@ export class BookCreateComponent implements OnInit {
 
     const date = this.bookForm.controls['publishingDate'].value;
     const formattedDate: Date = new Date(date);
-    book.publishingdate = formattedDate;
+    book.publishingDate = formattedDate;
     const authorId = this.bookForm.get('authors')!.value;
 
     this.bookService.createBook(book).subscribe(
