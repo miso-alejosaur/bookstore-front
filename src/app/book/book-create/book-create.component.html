@@ -1,0 +1,158 @@
+<div class="container mt-4">
+  <h2 class="text-center">Create a new book</h2>
+  <form [formGroup]="bookForm" (ngSubmit)="createBook(bookForm.value)">
+    <div class="form-group mx-sm-3 mb-2">
+      <label for="name"> Name </label>
+      <input
+        novalidate
+        id="name"
+        class="form-control"
+        formControlName="name"
+        placeholder="Book Name"
+      />
+    </div>
+    <div
+      class="alert alert-danger alert-dismissible fade show"
+      *ngIf="
+        bookForm.get('name')?.hasError('required') &&
+        bookForm.get('name')?.touched
+      "
+    >
+      Name required
+    </div>
+
+    <div class="form-group mx-sm-3 mb-2">
+      <label for="authors"> Author </label>
+      <select
+        class="form-control"
+        id="authors"
+        rows="3"
+        formControlName="authors"
+      >
+        <option value="">Select the author</option>
+        <option [value]="a.id" *ngFor="let a of authors">{{ a.name }}</option>
+      </select>
+    </div>
+    <div
+      class="alert alert-danger alert-dismissible fade show"
+      *ngIf="
+        bookForm.get('authors')?.hasError('required') &&
+        bookForm.get('authors')?.touched
+      "
+    >
+      Author required
+    </div>
+
+    <div class="form-group mx-sm-3 mb-2">
+      <label for="publishingDate"> Publishing Date </label>
+      <input
+        id="publishingDate"
+        type="date"
+        class="form-control"
+        formControlName="publishingDate"
+        placeholder="Book Publish Date"
+      />
+    </div>
+    <div
+      class="alert alert-danger alert-dismissible fade show"
+      *ngIf="
+        bookForm.get('publishingDate')?.hasError('required') &&
+        bookForm.get('publishingDate')?.touched
+      "
+    >
+      Date required
+    </div>
+
+    <div class="form-group mx-sm-3 mb-2">
+      <label for="description"> Description </label>
+      <input
+        id="description"
+        type="text"
+        class="form-control"
+        formControlName="description"
+        placeholder="Book Description"
+      />
+    </div>
+    <div
+      class="alert alert-danger alert-dismissible fade show"
+      *ngIf="
+        bookForm.get('description')?.hasError('required') &&
+        bookForm.get('description')?.touched
+      "
+    >
+      Description required
+    </div>
+
+    <div class="form-group mx-sm-3 mb-2">
+      <label for="isbn"> ISBN </label>
+      <input
+        id="isbn"
+        type="text"
+        class="form-control"
+        formControlName="isbn"
+        placeholder="Book ISBN"
+      />
+    </div>
+    <div
+      class="alert alert-danger alert-dismissible fade show"
+      *ngIf="
+        bookForm.get('isbn')?.hasError('required') &&
+        bookForm.get('isbn')?.touched
+      "
+    >
+      ISBN required
+    </div>
+
+    <div class="form-group mx-sm-3 mb-2">
+      <label for="image"> Image (URL) </label>
+      <input
+        id="image"
+        type="url"
+        class="form-control"
+        formControlName="image"
+        placeholder="Book Image"
+      />
+    </div>
+    <div
+      class="alert alert-danger alert-dismissible fade show"
+      *ngIf="
+        bookForm.get('image')?.hasError('required') &&
+        bookForm.get('image')?.touched
+      "
+    >
+      Image required
+    </div>
+
+    <div class="form-group mx-sm-3 mb-2">
+      <label for="editorial"> Editorial </label>
+      <select class="form-control" id="editorial" formControlName="editorial">
+        <option value="">Select the editorial</option>
+        <option [ngValue]="e" *ngFor="let e of editorials">{{ e.name }}</option>
+      </select>
+    </div>
+    <div
+      class="alert alert-danger alert-dismissible fade show"
+      *ngIf="
+        bookForm.get('editorial')?.hasError('required') &&
+        bookForm.get('editorial')?.touched
+      "
+    >
+      Editorial required
+    </div>
+
+    <button
+      type="submit"
+      class="btn btn-primary"
+      [disabled]="bookForm.invalid"
+    >
+      Create
+    </button>
+    <button
+      type="button"
+      class="btn btn-danger ml-3"
+      (click)="cancelCreation()"
+    >
+      Cancel
+    </button>
+  </form>
+</div>

@@ -1,7 +1,7 @@
-import { Author } from "../author/author";
-import { Editorial } from "../editorial/editorial";
-import { Book } from "./book";
-import { Review } from "./review";
+import { Author } from '../author/author';
+import { Editorial } from '../editorial/editorial';
+import { Book } from './book';
+import { Review } from './review';
 
 export class BookDetail extends Book {
   authors: Array<Author> = [];
@@ -13,12 +13,12 @@ export class BookDetail extends Book {
     isbn: string,
     description: string,
     image: string,
-    publishingDate: any,
+    publishingdate: any,
     editorial: Editorial,
     authors: Array<Author>,
     reviews: Array<Review>
   ) {
-    super(id, name, isbn, description, image, publishingDate, editorial)
+    super(id, name, isbn, description, image, publishingdate, editorial);
     this.authors = authors;
     this.reviews = reviews;
   }

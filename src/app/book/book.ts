@@ -1,4 +1,4 @@
-import { Editorial } from "../editorial/editorial";
+import { Editorial } from '../editorial/editorial';
 
 export class Book {
   id: number;
@@ -6,7 +6,7 @@ export class Book {
   isbn: string;
   description: string;
   image: string;
-  publishingDate: any;
+  publishingdate: any;
   editorial: Editorial;
 
   constructor(
@@ -15,7 +15,7 @@ export class Book {
     isbn: string,
     description: string,
     image: string,
-    publishingDate: any,
+    publishingdate: any,
     editorial: Editorial
   ) {
     this.id = id;
@@ -23,7 +23,7 @@ export class Book {
     this.isbn = isbn;
     this.description = description;
     this.image = image;
-    this.publishingDate = publishingDate;
+    this.publishingdate = publishingdate;
     this.editorial = editorial;
   }
- }
+}

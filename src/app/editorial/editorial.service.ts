@@ -1,24 +1,26 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-
 import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
 import { EditorialDetail } from './editorial-detail';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class EditorialService {
-
   private apiUrl: string = environment.baseUrl + 'editorials';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   getEditorials(): Observable<EditorialDetail[]> {
     return this.http.get<EditorialDetail[]>(this.apiUrl);
   }
 
   getEditorial(id: string): Observable<EditorialDetail> {
-    return this.http.get<EditorialDetail>(this.apiUrl + "/" + id);
+    return this.http.get<EditorialDetail>(this.apiUrl + '/' + id);
+  }
+
+  createEditorial(editorial: EditorialDetail): Observable<EditorialDetail> {
+    return this.http.post<EditorialDetail>(this.apiUrl, editorial);
   }
 }
