@@ -55,24 +55,6 @@ describe('BookListComponent', () => {
     debug = fixture.debugElement;
   });
 
-  function updateBookList(): void {
-    debugBookDetail = component.books.pop()!;
-    //TODO limpiar
-    //TODO: mejor poner esta funcionalidad en la prueba
-   // fixture.detectChanges();
-  }
-
-  function findDeletedBook(): boolean {
-    //TODO: mejor poner esta funcionalidad en la prueba
-    //TODO: buscar en la vista
-    for (var b in component.books) {
-      if(component.books[b].id == debugBookDetail.id) {
-        return true;
-      }
-    }
-    return false;
-  }
-
   it('should create', () => {
     expect(component).toBeTruthy();
   });
@@ -94,37 +76,43 @@ describe('BookListComponent', () => {
   });
 
   it('should have the corresponding src to the book image', () => {
-    //TODO: hacer un for con todos los libros
-    expect(debug.queryAll(By.css('img'))[4].attributes['src']).toEqual(
-      component.books[4].image
-    );
+    for(let i = 0; i<debug.queryAll(By.css('img')).length; i++) {
+      expect(debug.queryAll(By.css('img'))[i].attributes['src']).toEqual(
+        component.books[i].image
+      );
+    }
   });
 
   it('should have the corresponding alt to the book name', () => {
-    //TODO: hacer un for con todos los libros
-    expect(debug.queryAll(By.css('img'))[4].attributes['alt']).toEqual(
-      component.books[4].name
-    );
+    for(let i=0; i<debug.queryAll(By.css('img')).length; i++) {
+      expect(debug.queryAll(By.css('img'))[i].attributes['alt']).toEqual(
+        component.books[i].name
+      );
+    }
   });
 
   it('should have h5 tag with the book.name', () => {
-    const componentElement: HTMLElement = fixture.nativeElement;
-    const h5 = componentElement.querySelectorAll('h5')!;
-    //TODO: havcer un for con todos los libros
-    expect(h5[4].textContent).toContain(component.books[4].name);
+    for(let i = 0; i < debug.queryAll(By.css('h5')).length; i++) {
+      const element: HTMLElement = debug.queryAll(By.css('h5'))[i].nativeElement;
+      expect(element.textContent).toContain(component.books[i].name);
+    }
   });
 
   it('should have p tag with the book.editorial.name', () => {
-    const componentElement: HTMLElement = fixture.nativeElement;
-    const p = componentElement.querySelectorAll('p')!;
-    //TODO: havcer un for con todos los libros
-    expect(p[4].textContent).toContain(component.books[4].editorial.name);
+    for(let i = 0; i < debug.queryAll(By.css('p')).length; i++) {
+      const element: HTMLElement = debug.queryAll(By.css('p'))[i].nativeElement;
+      expect(element.textContent).toContain(component.books[i].editorial.name);
+    }
   });
 
   it('should have 9 <div.col.mb-2> elements and the deleted book should not exist', () => {
-    updateBookList();
+    debugBookDetail = component.books.pop()!;
+    fixture.detectChanges();
     expect(debug.queryAll(By.css('div.col.mb-2')).length == 9).toBeTrue();
-    expect(findDeletedBook()).toBeFalse();
-  });
 
+    for (let i =0; i < debug.queryAll(By.css('div.col.mb-2')).length; i++) {
+      const element: HTMLElement = debug.queryAll(By.css('div.col.mb-2'))[i].nativeElement;
+      expect(element.textContent).not.toContain(debugBookDetail.name);
+    }
+  });
 });
