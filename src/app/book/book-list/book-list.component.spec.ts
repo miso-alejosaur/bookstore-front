@@ -57,11 +57,14 @@ describe('BookListComponent', () => {
 
   function updateBookList(): void {
     debugBookDetail = component.books.pop()!;
-    fixture.detectChanges();
+    //TODO limpiar
+    //TODO: mejor poner esta funcionalidad en la prueba
+   // fixture.detectChanges();
   }
 
   function findDeletedBook(): boolean {
-    //TODO: preguntar si se debe revisar el component o el html
+    //TODO: mejor poner esta funcionalidad en la prueba
+    //TODO: buscar en la vista
     for (var b in component.books) {
       if(component.books[b].id == debugBookDetail.id) {
         return true;
@@ -91,12 +94,14 @@ describe('BookListComponent', () => {
   });
 
   it('should have the corresponding src to the book image', () => {
+    //TODO: hacer un for con todos los libros
     expect(debug.queryAll(By.css('img'))[4].attributes['src']).toEqual(
       component.books[4].image
     );
   });
 
   it('should have the corresponding alt to the book name', () => {
+    //TODO: hacer un for con todos los libros
     expect(debug.queryAll(By.css('img'))[4].attributes['alt']).toEqual(
       component.books[4].name
     );
@@ -105,12 +110,14 @@ describe('BookListComponent', () => {
   it('should have h5 tag with the book.name', () => {
     const componentElement: HTMLElement = fixture.nativeElement;
     const h5 = componentElement.querySelectorAll('h5')!;
+    //TODO: havcer un for con todos los libros
     expect(h5[4].textContent).toContain(component.books[4].name);
   });
 
   it('should have p tag with the book.editorial.name', () => {
     const componentElement: HTMLElement = fixture.nativeElement;
     const p = componentElement.querySelectorAll('p')!;
+    //TODO: havcer un for con todos los libros
     expect(p[4].textContent).toContain(component.books[4].editorial.name);
   });
 

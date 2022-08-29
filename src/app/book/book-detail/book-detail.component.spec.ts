@@ -67,8 +67,8 @@ describe('BookDetailComponent', () => {
 
   it('should have a p.h3.p-3 element with bookDetail.name', () => {
     const componentElement: HTMLElement = fixture.nativeElement;
-    const p = componentElement.querySelectorAll('p.h3.p-3')!;
-    expect(p[0].textContent).toContain(component.bookDetail.name);
+    const p = componentElement.querySelector('p.h3.p-3')!;
+    expect(p.textContent).toContain(component.bookDetail.name);
   });
 
   it('should have an img element with alt= bookDetail.name', () => {
@@ -84,6 +84,7 @@ describe('BookDetailComponent', () => {
   });
 
   it('should have 1(bookDetail.Editorial.name) + 3(Authors) <dd.caption> elements', () => {
+    //TODO: buscar regla de buscar hermanos de un elemento dado
     expect(debug.queryAll(By.css('dd.caption')).length == 4).toBeTrue();
   });
 
