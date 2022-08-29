@@ -11,6 +11,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { HttpClientModule } from '@angular/common/http';
 import { AuthorDetail } from 'src/app/author/author-detail';
 
+
 describe('BookDetailComponent', () => {
   let component: BookDetailComponent;
   let fixture: ComponentFixture<BookDetailComponent>;
@@ -66,9 +67,8 @@ describe('BookDetailComponent', () => {
   });
 
   it('should have a p.h3.p-3 element with bookDetail.name', () => {
-    const componentElement: HTMLElement = fixture.nativeElement;
-    const p = componentElement.querySelector('p.h3.p-3')!;
-    expect(p.textContent).toContain(component.bookDetail.name);
+    const element: HTMLElement = debug.query(By.css('p.h3.p-3')).nativeElement;
+    expect(element.textContent).toContain(component.bookDetail.name);
   });
 
   it('should have an img element with alt= bookDetail.name', () => {
@@ -83,9 +83,8 @@ describe('BookDetailComponent', () => {
     );
   });
 
-  it('should have 1(bookDetail.Editorial.name) + 3(Authors) <dd.caption> elements', () => {
-    //TODO: buscar regla de buscar hermanos de un elemento dado
-    expect(debug.queryAll(By.css('dd.caption')).length == 4).toBeTrue();
+  it('should have 3(Authors) <a> elements', () => {
+    expect(debug.queryAll(By.css('dd.caption > a')).length == 3).toBeTrue();
   });
 
   it('should have a routerLink=/authors/author.id for each author', () => {
@@ -95,60 +94,31 @@ describe('BookDetailComponent', () => {
     }
   });
 
-  it('should have an a tag with component.bookDetail.authors[i].name', () => {
-    const componentElement: HTMLElement = fixture.nativeElement;
-    const a = componentElement.querySelectorAll('a')!;
+  it('should have a tag with component.bookDetail.authors[i].name', () => {
     for (let i = 0; i < authorsSize; i++) {
-     expect(a[i].textContent).toContain(component.bookDetail.authors[i].name);
+      const componentElement: HTMLElement = debug.queryAll(By.css('dd.caption > a'))[i].nativeElement;
+      expect(componentElement.textContent).toContain(component.bookDetail.authors[i].name);
     }
   });
 
   it('should have one dd tag for component.bookDetail.isbn', () => {
-    const componentElement: HTMLElement = fixture.nativeElement;
-    const dd = componentElement.querySelectorAll('dd')!;
-    let ans = false;
-    for (let i = 0; i < dd.length; i++) {
-      if(dd[i].textContent?.includes(component.bookDetail.isbn)) {
-        ans = true;
-      }
-    }
-    expect(ans).toBeTrue();
+    const componentElement: HTMLElement = debug.query(By.css('dd + dt + dd')).nativeElement;
+    expect(componentElement.textContent).toContain(component.bookDetail.isbn);
   });
 
   it('should have one dd tag for component.bookDetail.publishingDate', () => {
-    const componentElement: HTMLElement = fixture.nativeElement;
-    const dd = componentElement.querySelectorAll('dd')!;
-    let ans = false;
-    for (let i = 0; i < dd.length; i++) {
-      if(dd[i].textContent?.includes(component.bookDetail.publishingDate)) {
-        ans = true;
-      }
-    }
-    expect(ans).toBeTrue();
+    const componentElement: HTMLElement = debug.query(By.css('dd + dt + dd + hr + dt + dd')).nativeElement;
+    expect(componentElement.textContent).toContain(component.bookDetail.publishingDate);
   });
 
   it('should have one dd tag for component.bookDetail.editorial.name', () => {
-    const componentElement: HTMLElement = fixture.nativeElement;
-    const dd = componentElement.querySelectorAll('dd')!;
-    let ans = false;
-    for (let i = 0; i < dd.length; i++) {
-      if(dd[i].textContent?.includes(component.bookDetail.editorial.name)) {
-        ans = true;
-      }
-    }
-    expect(ans).toBeTrue();
+    const componentElement: HTMLElement = debug.query(By.css('dd + dt + dd + hr + dt + dd + hr + dt + dd')).nativeElement;
+    expect(componentElement.textContent).toContain(component.bookDetail.editorial.name);
   });
 
   it('should have one dd tag for component.bookDetail.description', () => {
-    const componentElement: HTMLElement = fixture.nativeElement;
-    const dd = componentElement.querySelectorAll('dd')!;
-    let ans = false;
-    for (let i = 0; i < dd.length; i++) {
-      if(dd[i].textContent?.includes(component.bookDetail.description)) {
-        ans = true;
-      }
-    }
-    expect(ans).toBeTrue();
+    const componentElement: HTMLElement = debug.query(By.css('dd + dt + dd + hr + dt + dd + hr + dt + dd + hr + dt + dd')).nativeElement;
+    expect(componentElement.textContent).toContain(component.bookDetail.description);
   });
 
 });
