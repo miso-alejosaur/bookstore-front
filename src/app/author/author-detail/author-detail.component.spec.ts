@@ -78,13 +78,19 @@ describe('AuthorDetailComponent', () => {
   });
 
   it('should have one dd tag for component.authorDetail.description', () => {
-    const componentElement: HTMLElement = debug.query(By.css('dt + dd')).nativeElement;
-    expect(componentElement.textContent).toContain(component.authorDetail.description);
+    const allDt : DebugElement[]= debug.queryAll(By.css('dt'));
+    let nodo = allDt.find((value) => {
+      return value.nativeElement.textContent == 'Bio';
+    });
+    expect(nodo?.nativeElement.nextSibling.textContent).toContain(component.authorDetail.description);
   });
 
   it('should have one dd tag for component.authorDetail.birthDate', () => {
-    const componentElement: HTMLElement = debug.query(By.css('dt + dd + dt + dd')).nativeElement;
-    expect(componentElement.textContent).toContain(component.authorDetail.birthDate);
+    const allDt : DebugElement[]= debug.queryAll(By.css('dt'));
+    let nodo = allDt.find((value) => {
+      return value.nativeElement.textContent == 'BirthDay';
+    });
+    expect(nodo?.nativeElement.nextSibling.textContent).toContain(component.authorDetail.birthDate);
   });
 
   it('should have a tag with component.authorDetail.books[i].name', () => {

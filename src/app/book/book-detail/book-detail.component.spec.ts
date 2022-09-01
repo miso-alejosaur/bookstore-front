@@ -1,7 +1,7 @@
 /* tslint:disable:no-unused-variable */
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { DebugElement } from '@angular/core';
+import { DebugElement, DebugNode } from '@angular/core';
 
 import { BookDetailComponent } from './book-detail.component';
 import { faker } from '@faker-js/faker';
@@ -102,23 +102,36 @@ describe('BookDetailComponent', () => {
   });
 
   it('should have one dd tag for component.bookDetail.isbn', () => {
-    const componentElement: HTMLElement = debug.query(By.css('dd + dt + dd')).nativeElement;
-    expect(componentElement.textContent).toContain(component.bookDetail.isbn);
+    //TODO usar este c[odigo]
+    const allDt : DebugElement[]= debug.queryAll(By.css('dt'));
+    let nodo = allDt.find((value) => {
+      return value.nativeElement.textContent == 'ISBN';
+    });
+    expect(nodo?.nativeElement.nextSibling.textContent).toContain(component.bookDetail.isbn);
   });
 
   it('should have one dd tag for component.bookDetail.publishingDate', () => {
-    const componentElement: HTMLElement = debug.query(By.css('dd + dt + dd + hr + dt + dd')).nativeElement;
-    expect(componentElement.textContent).toContain(component.bookDetail.publishingDate);
+    const allDt : DebugElement[]= debug.queryAll(By.css('dt'));
+    let nodo = allDt.find((value) => {
+      return value.nativeElement.textContent == 'Publishing Date';
+    });
+    expect(nodo?.nativeElement.nextSibling.textContent).toContain(component.bookDetail.publishingDate);
   });
 
   it('should have one dd tag for component.bookDetail.editorial.name', () => {
-    const componentElement: HTMLElement = debug.query(By.css('dd + dt + dd + hr + dt + dd + hr + dt + dd')).nativeElement;
-    expect(componentElement.textContent).toContain(component.bookDetail.editorial.name);
+    const allDt : DebugElement[]= debug.queryAll(By.css('dt'));
+    let nodo = allDt.find((value) => {
+      return value.nativeElement.textContent == 'Editorial';
+    });
+    expect(nodo?.nativeElement.nextSibling.textContent).toContain(component.bookDetail.editorial.name);
   });
 
   it('should have one dd tag for component.bookDetail.description', () => {
-    const componentElement: HTMLElement = debug.query(By.css('dd + dt + dd + hr + dt + dd + hr + dt + dd + hr + dt + dd')).nativeElement;
-    expect(componentElement.textContent).toContain(component.bookDetail.description);
+    const allDt : DebugElement[]= debug.queryAll(By.css('dt'));
+    let nodo = allDt.find((value) => {
+      return value.nativeElement.textContent == 'Description';
+    });
+    expect(nodo?.nativeElement.nextSibling.textContent).toContain(component.bookDetail.description);
   });
 
 });

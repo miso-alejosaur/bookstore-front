@@ -77,33 +77,28 @@ describe('AuthorListComponent', () => {
   });
 
   it('should have the corresponding src to the author image', () => {
-    for(let i = 0; i<debug.queryAll(By.css('img')).length; i++) {
-      expect(debug.queryAll(By.css('img'))[i].attributes['src']).toEqual(
-        component.authors[i].image
-      );
-    }
+    debug.queryAll(By.css('img')).forEach((img, i)=>{
+      expect(img.attributes['src']).toEqual(
+        component.authors[i].image);
+    });
   });
 
   it('should have the corresponding alt to the author name', () => {
-    for(let i=0; i<debug.queryAll(By.css('img')).length; i++) {
-      expect(debug.queryAll(By.css('img'))[i].attributes['alt']).toEqual(
-        component.authors[i].name
-      );
-    }
+    debug.queryAll(By.css('img')).forEach((img, i)=>{
+      expect(img.attributes['alt']).toEqual(
+        component.authors[i].name);
+    });
   });
 
   it('should have h5 tag with the author.name', () => {
-    for(let i = 0; i < debug.queryAll(By.css('h5')).length; i++) {
-      const element: HTMLElement = debug.queryAll(By.css('h5'))[i].nativeElement;
-      expect(element.textContent).toContain(component.authors[i].name);
-    }
+    debug.queryAll(By.css('h5')).forEach((h5, i)=>{
+      expect(h5.nativeElement.textContent).toContain(component.authors[i].name);
+    });
   });
 
   it('should have p tag with the author.birthDate', () => {
-    for(let i = 0; i < debug.queryAll(By.css('p')).length; i++) {
-      const element: HTMLElement = debug.queryAll(By.css('p'))[i].nativeElement;
-      expect(element.textContent).toContain(component.authors[i].birthDate);
-    }
+    debug.queryAll(By.css('p')).forEach((p, i)=>{
+      expect(p.nativeElement.textContent).toContain(component.authors[i].birthDate);
+    });
   });
-
 });
