@@ -8,7 +8,7 @@ import { EditorialListComponent } from './editorial-list.component';
 import { RouterTestingModule } from '@angular/router/testing';
 import { HttpClientModule } from '@angular/common/http';
 import { EditorialDetail } from '../editorial-detail';
-import { Book } from 'src/app/book/book';
+import { BookDetail } from 'src/app/book/book-detail';
 
 describe('EditorialListComponent', () => {
   let component: EditorialListComponent;
@@ -27,9 +27,32 @@ describe('EditorialListComponent', () => {
     fixture = TestBed.createComponent(EditorialListComponent);
     component = fixture.componentInstance;
 
-    component.editorials = [
-      new EditorialDetail(faker.datatype.number(), faker.lorem.sentence(), [])
-    ];
+    let testEditorials: Array<EditorialDetail> = [];
+
+    let testBooks: Array<BookDetail> = [];
+
+    for(let i = 0; i<3; i++) {
+      testBooks[i] = new BookDetail(
+        faker.datatype.number(),
+        faker.lorem.sentence(),
+        faker.lorem.sentence(),
+        faker.lorem.sentence(),
+        faker.image.imageUrl(),
+        faker.date.past(),
+        new EditorialDetail(faker.datatype.number(), faker.lorem.sentence(), []),
+        [],[]
+      );
+    }
+
+    for(let i = 0; i<10; i++) {
+      testEditorials[i] = new EditorialDetail(
+        faker.datatype.number(),
+        faker.lorem.sentence(),
+        testBooks
+      );
+    }
+
+    component.editorials = testEditorials;
 
     debug = fixture.debugElement;
     fixture.detectChanges();
@@ -39,7 +62,17 @@ describe('EditorialListComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should have a p element ', () => {
-    expect(debug.query(By.css('p')).nativeElement.innerHTML).toContain(component.editorials[0].name)
+  it('should have 10 <p> elements', () => {
+    expect(debug.queryAll(By.css('p')).length == 10).toBeTrue();
+  });
+
+  it('should have 30 <img> elements', () => {
+    expect(debug.queryAll(By.css('img')).length == 30).toBeTrue();
+  });
+
+  it('should have p tag with the editorial.name', () => {
+    debug.queryAll(By.css('p')).forEach((p, i)=>{
+      expect(p.nativeElement.textContent).toContain(component.editorials[i].name)
+    });
   });
 });
