@@ -13,6 +13,7 @@ export class BookListComponent implements OnInit {
   books: Array<BookDetail> = [];
   selected: Boolean = false;
   selectedBook!: BookDetail;
+  p: number = 1;
 
   constructor(private bookService: BookService) { }
 

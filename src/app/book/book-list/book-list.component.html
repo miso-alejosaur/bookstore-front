@@ -6,7 +6,7 @@
 
 <div class="container-fluid">
   <div class="row">
-    <div *ngFor="let book of books" class="col mb-2">
+    <div *ngFor="let book of books | paginate: { itemsPerPage: 12, currentPage: p }" class="col mb-2">
       <div class="card p-2" style="width: 15rem; height: 33rem">
         <img
           class="card-img-top"
@@ -20,5 +20,6 @@
         </div>
       </div>
     </div>
+    <pagination-controls (pageChange)="p = $event"></pagination-controls>
   </div>
 </div>

@@ -102,7 +102,6 @@ describe('BookDetailComponent', () => {
   });
 
   it('should have one dd tag for component.bookDetail.isbn', () => {
-    //TODO usar este c[odigo]
     const allDt : DebugElement[]= debug.queryAll(By.css('dt'));
     let nodo = allDt.find((value) => {
       return value.nativeElement.textContent == 'ISBN';
