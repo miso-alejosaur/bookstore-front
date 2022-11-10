@@ -14,6 +14,7 @@ export class BookListComponent implements OnInit {
   selected: Boolean = false;
   selectedBook!: BookDetail;
   p: number = 1;
+  searchedBook: any;
 
   constructor(private bookService: BookService) { }
 
