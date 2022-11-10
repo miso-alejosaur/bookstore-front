@@ -6,7 +6,8 @@ footer  {
 #principal {
   background-image: url(../assets/Monitoria-2.jpg);
   background-size: 100% 100%;
-  background-repeat: no-repeat;
+  background-repeat: repeat;
+  /* background-position: center; */
 }
 
 .main-text {
@@ -15,4 +16,14 @@ footer  {
   left: '0';
   --bs-bg-opacity:0.45;
   color: aliceblue;
+}
+
+.img-fluid, .mx-auto {
+  height: 50%;
+}
+
+.info-div {
+  position: absolute;
+  top: 10px;
+  left: 10px;
 }
