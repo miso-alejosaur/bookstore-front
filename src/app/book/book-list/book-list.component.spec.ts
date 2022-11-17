@@ -10,6 +10,7 @@ import { Editorial } from 'src/app/editorial/editorial';
 import { BookService } from '../book.service';
 import { BookDetail } from '../book-detail';
 import { RouterTestingModule } from '@angular/router/testing';
+import {NgxPaginationModule} from 'ngx-pagination';
 
 describe('BookListComponent', () => {
   let component: BookListComponent;
@@ -19,7 +20,7 @@ describe('BookListComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientModule, RouterTestingModule],
+      imports: [HttpClientModule, RouterTestingModule, NgxPaginationModule],
       declarations: [ BookListComponent ],
       providers: [ BookService ]
     })

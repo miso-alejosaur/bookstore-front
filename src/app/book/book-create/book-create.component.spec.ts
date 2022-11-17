@@ -41,7 +41,9 @@ describe('BookCreateComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  //TODO: VALIDAR ESTADO DEL BOT{ON DE SUBMIT ESTe DESACTIVADO AL INICIO}
+  it('Submit button should be disabled', () => {
+    expect(component.bookForm.valid).toBeFalsy();
+  });
 
   it('should have a button with id submit and with type submit', () => {
     expect(debug.query(By.css('#submit')).attributes['type']).toEqual('submit');

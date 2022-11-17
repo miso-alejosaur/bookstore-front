@@ -1,0 +1,29 @@
+footer  {
+  background-color: #000000;
+  color: #ede7f6;
+
+}
+#principal {
+  background-image: url(../assets/Monitoria-2.jpg);
+  background-size: 100% 100%;
+  background-repeat: repeat;
+  /* background-position: center; */
+}
+
+.main-text {
+  position: 'fixed';
+  top: '0';
+  left: '0';
+  --bs-bg-opacity:0.45;
+  color: aliceblue;
+}
+
+.img-fluid, .mx-auto {
+  height: 50%;
+}
+
+.info-div {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+}
