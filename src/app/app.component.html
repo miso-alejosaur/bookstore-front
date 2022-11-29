@@ -1,7 +1,7 @@
 <!-- Navigation bar -->
 <div class="container-fluid">
   <div class="row">
-    <nav class="navbar sticky-top navbar-expand-lg navbar-dark" style="background-color: #000000">
+    <nav class="navbar sticky-top navbar-expand-lg navbar-dark" style="background-color: #0D0D0D">
       <div class="container-fluid">
         <a class="navbar-brand" routerLink="/books/list">Bookly</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
@@ -58,10 +58,11 @@
 
   <!-- Main Router Outlet -->
   <div class="row" id="principal">
-      <div class="row main-text bg-dark h-100 ">
+    <div class="row main-text bg-dark h-100 ">
 
-        <div class="col-md-3">
-          <div class="row">
+      <div class="col-md-3 ">
+        <div class="row sticky-top">
+          <div class="row mb-2">
             <div class="col-md-12">
               <br />
               <br />
@@ -86,14 +87,15 @@
             </div>
           </div>
         </div>
-        <div class="col-md-9">
-          <router-outlet></router-outlet>
-        </div>
       </div>
+      <div class="col-md-9">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
   </div>
 
   <div class="row">
-    <footer class="fixed-bottom page-footer font-small blue pt-4 ">
+    <footer class="fixed-bottom page-footer font-small blue pt-4" style="background-color: #0D0D0D">
 
       <!-- Footer Links -->
       <div class="container-fluid text-center text-md-left">

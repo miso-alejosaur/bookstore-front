@@ -4,15 +4,11 @@ img {
   max-width: 400px;
 }
 
-.ngx-pagination .current:hover {
-  background: #a000f0 !important;
-  border-radius: 20px !important;
-  border: transparent !important;
+.selected-book {
+  background: #417FA6;
 }
 
-.ngx-pagination .current,
-.btn-info {
-  background: #17b81f !important;
-  border: transparent !important;
-  border-radius: 20px !important;
+.card {
+  background: #417FA6;
 }
+
