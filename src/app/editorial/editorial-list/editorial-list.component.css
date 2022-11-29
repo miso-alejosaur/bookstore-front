@@ -3,3 +3,8 @@ img {
   width: auto;
   max-width: 400px;
 }
+
+.card {
+  background: #417FA6;
+  color: #fefefe;
+}
