@@ -1,0 +1,14 @@
+{
+ "name": "Typescript",
+ "image":
+         "mcr.microsoft.com/vscode/devcontainers/typescript-node:16",
+ "customizations": {
+		"vscode": {
+			"settings": {},
+			"extensions": [
+				"ms-vsliveshare.vsliveshare"
+			]
+		}
+	},
+  "forwardPorts": [ 4200, 9876 ]
+}
