@@ -1,9 +1,9 @@
 pipeline {
     agent any
     environment {
-       GIT_REPO = '202212_Equipo11'
-       GIT_CREDENTIAL_ID = '277a9d46-cf19-4119-afd9-4054a7d35151'
-       SONARQUBE_URL = 'http://172.24.100.52:8082/sonar-misovirtual'
+       GIT_REPO = 'bookstore-front'
+       GIT_CREDENTIAL_ID = '7c21addc-0cbf-4f2e-9bd8-eced479c56c6'
+       SONARQUBE_URL = 'http://172.24.100.52:8082/sonar-isis2603'
     }
     stages {
        stage('Checkout') {
@@ -33,8 +33,8 @@ pipeline {
                 sh('git config --global user.name "ci-isis2603"')
                 sh('git add ./reports/index.html')
                 sh('git commit -m "[ci-skip] GitInspector report added"')
-                sh('git pull https://${GIT_USERNAME}:${GIT_PASSWORD}@github.com/MISW-4104-Web/${GIT_REPO} master')
-                sh('git push https://${GIT_USERNAME}:${GIT_PASSWORD}@github.com/MISW-4104-Web/${GIT_REPO} master')
+                sh('git pull https://${GIT_USERNAME}:${GIT_PASSWORD}@github.com/Uniandes-isis2603/${GIT_REPO} master')
+                sh('git push https://${GIT_USERNAME}:${GIT_PASSWORD}@github.com/Uniandes-isis2603/${GIT_REPO} master')
              }
           }
        }
