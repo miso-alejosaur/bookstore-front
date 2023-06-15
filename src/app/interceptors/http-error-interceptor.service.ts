@@ -17,13 +17,11 @@ export class HttpErrorInterceptorService extends HttpErrorResponse {
       .pipe(
         catchError((httpErrorResponse: HttpErrorResponse) => {
           let errorMesagge = '';
-          let errorType = '';
 
           if (httpErrorResponse.error instanceof ErrorEvent) {
-            errorType = "Client side error"
             errorMesagge = httpErrorResponse.error.error;
           } else {
-            errorType = "Server side error"
+            let errorType = "Server side error"
             if (httpErrorResponse.status === 0) {
               errorMesagge = "No hay conexión con el servidor";
             } else {

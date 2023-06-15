@@ -6,7 +6,7 @@ import { AuthorService } from '../author.service';
 @Component({
   selector: 'app-author-detail',
   templateUrl: './author-detail.component.html',
-  styleUrls: ['./author-detail.component.css']
+  styleUrls: []
 })
 export class AuthorDetailComponent implements OnInit {
 

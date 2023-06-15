@@ -8,7 +8,7 @@ import { EditorialService } from '../editorial.service';
 @Component({
   selector: 'app-editorial-create',
   templateUrl: './editorial-create.component.html',
-  styleUrls: ['./editorial-create.component.css'],
+  styleUrls: [],
 })
 export class EditorialCreateComponent implements OnInit {
   editorialForm!: FormGroup;

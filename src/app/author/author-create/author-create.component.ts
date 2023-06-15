@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-author-create',
   templateUrl: './author-create.component.html',
-  styleUrls: ['./author-create.component.css'],
+  styleUrls: [],
 })
 export class AuthorCreateComponent implements OnInit {
   authorForm!: FormGroup;
@@ -25,8 +25,8 @@ export class AuthorCreateComponent implements OnInit {
     const date = this.authorForm.controls['birthDate'].value;
     const formattedDate: Date = new Date(date);
     author.birthDate = formattedDate;
-    this.authorService.createAuthor(author).subscribe((author) => {
-      console.info('The author was created: ', author);
+    this.authorService.createAuthor(author).subscribe((authorAPI) => {
+      console.info('The author was created: ', authorAPI);
       this.toastr.success('Confirmation', 'Author created');
       this.router.navigate(['/authors/list']);
       this.authorForm.reset();

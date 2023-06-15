@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Book } from '../book';
 import { BookDetail } from '../book-detail';
 import { BookService } from '../book.service';
 
@@ -11,7 +10,7 @@ import { BookService } from '../book.service';
 export class BookListComponent implements OnInit {
 
   books: Array<BookDetail> = [];
-  selected: Boolean = false;
+  selected: boolean = false;
   selectedBook!: BookDetail;
   p: number = 1;
   searchedBook: any;

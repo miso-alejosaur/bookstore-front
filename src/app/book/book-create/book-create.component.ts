@@ -13,7 +13,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-book-create',
   templateUrl: './book-create.component.html',
-  styleUrls: ['./book-create.component.css'],
+  styleUrls: [],
 })
 export class BookCreateComponent implements OnInit {
   authors!: Author[];
