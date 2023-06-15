@@ -1,4 +1,4 @@
-# BookStore 
+# BookStore  
 
 Proyecto de ejemplo para el curso Desarrollo de Software en Equipos de la Universidad de los Andes. 
 

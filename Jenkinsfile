@@ -1,9 +1,9 @@
 pipeline {
     agent any
     environment {
-       GIT_REPO = '202212_Equipo11'
-       GIT_CREDENTIAL_ID = '277a9d46-cf19-4119-afd9-4054a7d35151'
-       SONARQUBE_URL = 'http://172.24.100.52:8082/sonar-misovirtual'
+       GIT_REPO = 'bookstore-front'
+       GIT_CREDENTIAL_ID = '7c21addc-0cbf-4f2e-9bd8-eced479c56c6'
+       SONARQUBE_URL = 'http://172.24.100.52:8082/sonar-isis2603'
     }
     stages {
        stage('Checkout') {
@@ -13,29 +13,7 @@ pipeline {
 
              git branch: 'master',
                 credentialsId: env.GIT_CREDENTIAL_ID,
-                url: 'https://github.com/MISW-4104-Web/' + env.GIT_REPO
-          }
-       }
-       stage('Git Analysis') {
-          // Run git analysis
-          steps {
-             script {
-                docker.image('gitinspector-isis2603').inside('--entrypoint=""') {
-                   sh '''
-                      mkdir -p ./reports/
-                      datetime=$(date +'%Y-%m-%d_%H%M%S')
-                      gitinspector --file-types="cs,js,asax,ascx,asmx,aspx,html,fs,ts" --format=html --RxU -w -T -x author:Bocanegra -x author:estudiante > ./reports/index.html
-                   '''
-                }
-             }
-             withCredentials([usernamePassword(credentialsId: env.GIT_CREDENTIAL_ID, passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')]) {
-                sh('git config --global user.email "ci-isis2603@uniandes.edu.co"')
-                sh('git config --global user.name "ci-isis2603"')
-                sh('git add ./reports/index.html')
-                sh('git commit -m "[ci-skip] GitInspector report added"')
-                sh('git pull https://${GIT_USERNAME}:${GIT_PASSWORD}@github.com/MISW-4104-Web/${GIT_REPO} master')
-                sh('git push https://${GIT_USERNAME}:${GIT_PASSWORD}@github.com/MISW-4104-Web/${GIT_REPO} master')
-             }
+                url: 'https://github.com/Uniandes-isis2603/' + env.GIT_REPO
           }
        }
        stage('Build') {
@@ -44,6 +22,7 @@ pipeline {
              script {
                 docker.image('citools-isis2603:latest').inside('-u root') {
                    sh '''
+                      CYPRESS_INSTALL_BINARY=0 npm install
                       npm i -s
                       npm i typescript@4.6.2
                       ng build
