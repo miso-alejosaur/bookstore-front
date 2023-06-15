@@ -11,6 +11,7 @@ import { BookService } from '../book.service';
 import { BookDetail } from '../book-detail';
 import { RouterTestingModule } from '@angular/router/testing';
 import {NgxPaginationModule} from 'ngx-pagination';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 describe('BookListComponent', () => {
   let component: BookListComponent;
@@ -20,7 +21,7 @@ describe('BookListComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientModule, RouterTestingModule, NgxPaginationModule],
+      imports: [HttpClientModule, RouterTestingModule, NgxPaginationModule, Ng2SearchPipeModule],
       declarations: [ BookListComponent ],
       providers: [ BookService ]
     })
