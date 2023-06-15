@@ -5,7 +5,6 @@ import { Author } from 'src/app/author/author';
 import { AuthorService } from 'src/app/author/author.service';
 import { Editorial } from 'src/app/editorial/editorial';
 import { EditorialService } from 'src/app/editorial/editorial.service';
-import { Book } from '../book';
 import { BookDetail } from '../book-detail';
 import { BookService } from '../book.service';
 import { Router } from '@angular/router';
