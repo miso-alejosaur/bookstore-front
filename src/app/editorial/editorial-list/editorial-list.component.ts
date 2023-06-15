@@ -12,8 +12,8 @@ export class EditorialListComponent implements OnInit {
   constructor(private editorialService: EditorialService) {}
 
   getEditorials() {
-    this.editorialService.getEditorials().subscribe((editorials) => {
-      this.editorials = editorials;
+    this.editorialService.getEditorials().subscribe((apiData) => {
+      this.editorials = apiData;
     });
   }
 

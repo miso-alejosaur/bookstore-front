@@ -25,8 +25,8 @@ export class AuthorCreateComponent implements OnInit {
     const date = this.authorForm.controls['birthDate'].value;
     const formattedDate: Date = new Date(date);
     author.birthDate = formattedDate;
-    this.authorService.createAuthor(author).subscribe((authorAPI) => {
-      console.info('The author was created: ', authorAPI);
+    this.authorService.createAuthor(author).subscribe((apiData) => {
+      console.info('The author was created: ', apiData);
       this.toastr.success('Confirmation', 'Author created');
       this.router.navigate(['/authors/list']);
       this.authorForm.reset();

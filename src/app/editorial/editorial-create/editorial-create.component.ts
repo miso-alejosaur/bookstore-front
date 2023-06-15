@@ -28,17 +28,16 @@ export class EditorialCreateComponent implements OnInit {
 
   createEditorial(editorial: EditorialDetail) {
     this.editorialService.createEditorial(editorial).subscribe(
-      () => {
+      { next: apiData => {
         this.toastrService.success(
           'The editorial was created',
           'Editorial creation'
         );
         this.router.navigate(['/editorials/list']);
         this.editorialForm.reset();
-      },
-      (err: string | undefined) => {
-        this.toastrService.error(err, 'Error creating the editorial');
-      }
+      }, error: e => {
+        this.toastrService.error(e, 'Error creating the editorial');
+      }}
     );
   }
 

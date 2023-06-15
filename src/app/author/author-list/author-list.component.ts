@@ -16,8 +16,8 @@ export class AuthorListComponent implements OnInit {
   constructor(private authorService: AuthorService) { }
 
   getAuthors(){
-    this.authorService.getAuthors().subscribe(authors=>{
-      this.authors = authors;
+    this.authorService.getAuthors().subscribe(apiData=>{
+      this.authors = apiData;
     })
   }
 

@@ -18,8 +18,8 @@ export class BookDetailComponent implements OnInit {
     private bookService: BookService) { }
 
   getBook(){
-    this.bookService.getBook(this.bookId).subscribe(book=>{
-      this.bookDetail = book;
+    this.bookService.getBook(this.bookId).subscribe(apiData => {
+      this.bookDetail = apiData;
     })
   }
 

@@ -31,25 +31,17 @@ export class BookCreateComponent implements OnInit {
   ) {}
 
   getEditorials(): void {
-    this.editorialService.getEditorials().subscribe(
-      (editorials) => {
-        this.editorials = editorials;
-      },
-      (err) => {
-        this.toastrService.error(err, 'Error');
-      }
-    );
+    this.editorialService.getEditorials().subscribe({
+      next: apiData => this.editorials = apiData,
+      error: e => this.toastrService.error(e, 'Error')
+    });
   }
 
   getAuthors(): void {
-    this.authorService.getAuthors().subscribe(
-      (auth) => {
-        this.authors = auth;
-      },
-      (err) => {
-        this.toastrService.error(err, 'Error');
-      }
-    );
+    this.authorService.getAuthors().subscribe({
+      next: apiData => this.authors = apiData,
+      error: e => this.toastrService.error(e, 'Error')
+    });
   }
 
   createBook(book: BookDetail) {
@@ -60,27 +52,26 @@ export class BookCreateComponent implements OnInit {
     book.publishingDate = formattedDate;
     const authorId = this.bookForm.get('authors')!.value;
 
-    this.bookService.createBook(book).subscribe(
-      (b: Book) => {
+    this.bookService.createBook(book).subscribe({
+      next: apiDataBook => {
         this.toastrService.success('The book was created successfully');
-        this.bookService.createAuthorBook(b.id, authorId).subscribe(
-          () => {
+        this.bookService.createAuthorBook(apiDataBook.id, authorId).subscribe({
+          next: apiDataAuthorBook => {
             this.toastrService.success(
               'The author was associated successfully'
             );
+            this.router.navigate(['/books/list']);
+            this.bookForm.reset();
           },
-          (err: string) => {
-            this.toastrService.error(err, 'Error');
+          error: errorAssociation => {
+            this.toastrService.error(errorAssociation, 'Error');
           }
-        );
-
-        this.router.navigate(['/books/list']);
-        this.bookForm.reset();
+        });
       },
-      (err: string) => {
-        this.toastrService.error(err, 'Error');
+      error: errorBook => {
+        this.toastrService.error(errorBook, 'Error');
       }
-    );
+    });
   }
 
   cancelCreation(): void {

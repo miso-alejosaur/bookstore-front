@@ -19,8 +19,8 @@ export class AuthorDetailComponent implements OnInit {
   ) {}
 
   getAuthor(){
-    this.authorService.getAuthor(this.authorId).subscribe(author=>{
-      this.authorDetail = author;
+    this.authorService.getAuthor(this.authorId).subscribe(apiData=>{
+      this.authorDetail = apiData;
     })
   }
 
