@@ -8,7 +8,7 @@ Para ejecutar este proyecto primero debe instalar las dependencias:
 npm i
 ```
 
-Luego ejecute el servidor de desarrollo:
+Luego ejecute el  servidor de desarrollo:
 
 ```
 ng s
